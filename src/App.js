@@ -5,12 +5,10 @@ import Homepage from './components/Homepage';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {data1:0,data2:0,data3:0,data4:0,data5:0,data6:0,data7:0,data8:0,}
+    this.state = {data1:0,data2:0,data3:0,data4:0,data5:0,data6:0,data7:0,data8:1,}
   }
+
   componentDidMount() {
-    this.interval = setInterval(this.getData, 5000);
-  }
-  getData=()=> {
     fetch('https://api.thingspeak.com/channels/747224/fields/1/last.txt')
     .then(response => response.json())
     .then(data => this.setState({ data1:data }));
