@@ -46,9 +46,9 @@ class Homepage extends Component {
       HI = HI1-AD1+AD2
     }
       if(HI>=91 && HI<103){
-        this.setState({heat:Sun2})
-      }else if(HI>=103&&HI<115){
         this.setState({heat:Sun3})
+      }else if(HI>=103&&HI<115){
+        this.setState({heat:Sun2})
       }else if(HI>115){
         this.setState({heat:Sun4})
       }
