@@ -49,7 +49,7 @@ class Homepage extends Component {
         this.setState({heat:Sun3})
       }else if(HI>=103&&HI<115){
         this.setState({heat:Sun2})
-      }else if(HI>115){
+      }else if(HI>=115){
         this.setState({heat:Sun4})
       }
       this.AQI();  
