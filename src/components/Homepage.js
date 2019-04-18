@@ -21,7 +21,7 @@ class Homepage extends Component {
       this.heat();
     }
   }
-
+//ค่า HI
   heat=()=>{
     let TaF=((9/5)*this.props.data4)+32;
     let HI1=0.5*(TaF+61+((TaF-68)*1.2)+(this.props.data5*0.094));
@@ -55,6 +55,7 @@ class Homepage extends Component {
       this.AQI();  
   }
 
+//คนยิ้ม ค่า I
   AQI=()=>{
     let I=0; 
   //   if(this.props.data2>=0 && this.props.data2<=12){
@@ -132,17 +133,17 @@ class Homepage extends Component {
     this.Carci(); 
   }
 
-
+//ADI*100(%)
   Carci=()=> {
     let ADI = (this.props.data2*0.001*0.83*8*204*48)/1226400;
     let RfD = 0.001429
     let HQ = ADI/RfD
     if(HQ>1) {
       // print(HQ) 
-      // print("Adverse health effects will occur")
+      // print("Must concern")
     }else{
       // print(HQ)
-      // print("adverse effects are not likely to occur")
+      // print("Must not concern")
     }
     // print(ADI*1.1)
  }
