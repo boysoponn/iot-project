@@ -5,7 +5,7 @@ import Homepage from './components/Homepage';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {data:false,data1:0,data2:0,data3:0,data4:0,data5:0,data6:0,data7:0,data8:1,}
+    this.state = {data:false,data1:0,data2:0,data3:0,data4:0,data5:0,data6:0,data7:0,data8:0,}
   }
 
   componentDidMount() {

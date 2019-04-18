@@ -1,71 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Popover from '@material-ui/core/Popover';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import Slide from '@material-ui/core/Slide';
+import styled  from 'styled-components'
 
-const styles = theme => ({
-  typography: {
-    margin: theme.spacing.unit * 2,
-  },
-});
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
 
-class SimplePopover extends React.Component {
-  state = {
-    anchorEl: null,
-  };
-
-  handleClick = event => {
-    this.setState({
-      anchorEl: event.currentTarget,
-    });
-  };
-
-  handleClose = () => {
-    this.setState({
-      anchorEl: null,
-    });
-  };
+class AlertDialogSlide extends React.Component {
 
   render() {
-    const { classes } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-
     return (
       <div>
-        <Button
-          aria-owns={open ? 'simple-popper' : undefined}
-          aria-haspopup="true"
-          variant="contained"
-          onClick={this.handleClick}
+        <Dialog
+          open={this.props.open}
+          TransitionComponent={Transition}
+          onClose={this.props.handleClose}
+          maxWidth="lg"
         >
-          Open Popover
-        </Button>
-        <Popover
-          id="simple-popper"
-          open={open}
-          anchorEl={anchorEl}
-          onClose={this.handleClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-        >
-          <Typography className={classes.typography}>{this.props.text}</Typography>
-        </Popover>
+          <DialogContent>
+            <img alt="" src={this.props.image} width="100%"/>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
 }
 
-SimplePopover.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimplePopover);
+export default AlertDialogSlide;
