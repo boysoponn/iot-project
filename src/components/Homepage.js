@@ -114,7 +114,21 @@ class Homepage extends Component {
     let P6 = 0.0014*M*(34-this.props.data4)
     let L= M-P1-P2-P3-P4-P5-P6
     let P1MV = (0.303*Math.exp(-0.036*M)+0.028)*L
-  
+    if(P1MV<= -3){
+      print("cold")
+    }else if(P1MV<=-2 && P1MV>-3){
+      print("cool")
+    }else if(P1MV<=-1 && P1MV>2){
+      print("slightly cool")
+    }else if(P1MV<1 && P1MV>-1){
+      print("neutral")
+    }else if(P1MV>=1 && P1MV<2){
+      print("slightly warm")
+    }else if(P1MV>=2 && P1MV<3){
+      print("warm")
+    }else if(P1MV>=3){
+      print("hot")
+    }
     this.Carci(); 
   }
 
