@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import styled , {keyframes} from 'styled-components'
+import styled  from 'styled-components'
 import Grid from '@material-ui/core/Grid';
+import Popup from './popup';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Sun1 from '../image/Sun1.png'
 import Sun2 from '../image/Sun2.png'
 import Sun3 from '../image/Sun3.png'
@@ -20,21 +22,28 @@ import Warm from '../image/warm.png'
 import Hot from '../image/hot.png'
 import Cold from '../image/cold.png'
 import Cool from '../image/cool.png'
-import Health2 from '../image/health2.png'
-import Health1 from '../image/health1.png'
-import Health3 from '../image/health3.png'
-import Health4 from '../image/health4.png'
+import Casualdress from '../image/casualdress.png'
+import Drinkoften from '../image/drinkoften.png'
+import Letsexercise from '../image/letsexercise.png'
+import Limitexercise from '../image/limitexercise.png'
+import Openwindow from '../image/open window.png'
+import Providewaterr from '../image/provide waterr.png'
+import Reschedule from '../image/reschedule.png'
+import Reduceexercise from '../image/reduce exercise.png'
+import Takeabreak from '../image/takeabreak.png'
+import Closewindow from '../image/open window.png'
+import Winter from '../image/winter.png'
 import Sit from '../image/SIIT LOGO 2.png'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Web1 from '../image/web1.png'
+import Web2 from '../image/web2.png'
+import Web3 from '../image/web3.png'
+import Web4 from '../image/web4.png'
+import Web5 from '../image/web5.png'
 
 class Homepage extends Component {
   state = {
-    imageHI:Sun1,
-    HI:0,
-    titleHI:"Caution",
-    descriptionHI:"Fatigue possible",
-    BGHI:"#d8ff3e",
-    loaded:false
+    loaded:false,
+    open: false
   };
 
 
@@ -46,7 +55,15 @@ class Homepage extends Component {
       })
     }
   }
-//ค่า HI
+
+  handleClickOpen = name => () => {
+    this.setState({ open: true ,imagePopup:name});
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   heat=(nextProps)=>{
     let TaF=((9/5)*nextProps.data4)+32;
     let HI1=0.5*(TaF+61+((TaF-68)*1.2)+(nextProps.data5*0.094));
@@ -70,7 +87,9 @@ class Homepage extends Component {
     }else{
       HI = (HI1-AD1+AD2).toFixed(0);
     }
-      if(HI>=91 && HI<103){
+      if(HI>=0&& HI<91){
+        this.setState({imageHI:Sun1,HI:HI,titleHI:"Caution",descriptionHI:"Fatigue possible",BGHI:"#d8ff3e",});
+      }else if(HI>=91 && HI<103){
         this.setState({imageHI:Sun3,HI:HI,titleHI:"Extreme Caution",descriptionHI:"Sunstroke, muscle cramps, and/or heat exhaustion",BGHI:"#ffd700",});
       }else if(HI>=103&&HI<115){
         this.setState({imageHI:Sun2,HI:HI,titleHI:"Danger",descriptionHI:"Sunstroke, muscle cramps, and/or heat exhaustion",BGHI:"#ffa800",});
@@ -79,7 +98,6 @@ class Homepage extends Component {
       }
       this.AQI(nextProps);  
   }
-
 //คนยิ้ม ค่า I
   AQI=(nextProps)=>{
     let I=0; 
@@ -171,6 +189,7 @@ class Homepage extends Component {
   render() {
     return (
       <Div>
+        <Popup open={this.state.open} image={this.state.imagePopup} handleClose={this.handleClose}/>
         <Logo src={Sit}/>
       <Container>
         <All>        
@@ -179,24 +198,24 @@ class Homepage extends Component {
         :
         <Grid container spacing={24}>
           <Grid item  xs={12} md={4}>
-            <Div1  color={this.state.BGAQI}>
+            <Div1  color={this.state.BGAQI} onClick={this.handleClickOpen(Web1)}>
               <Grid style={{margin:0,width:'auto'}} container spacing={24}>
                 <Grid item xs={6} >
                   <P1 weight size="45px">{this.state.AQI}</P1>
-                  <P1>US AQI</P1>
+                  <P1 size="15px">US AQI</P1>
                 </Grid>
                 <Grid item xs={6} >
                   <P1 top="10px">{this.state.descriptionAQI}</P1>
                 </Grid>  
               </Grid>   
               <Grid item xs={12} >     
-                <Img width="40%" src={this.state.imageAQI} />
+                <Img width={40} src={this.state.imageAQI} />
               </Grid>
             </Div1>
-            <Div1 className="center" color={this.state.BGPMV}>
+            <Div1 className="center" color={this.state.BGPMV} onClick={this.handleClickOpen(Web5)}>
             <Grid alignItems="center" style={{margin:0,width:'auto'}} container spacing={24}>
                 <Grid item xs={5} >
-                  <Img width="150%" src={this.state.imagePMV}/>
+                  <Img width={150} src={this.state.imagePMV}/>
                 </Grid>
                 <Grid item xs={7}>
                   <P1>Sensation scale</P1>
@@ -207,10 +226,10 @@ class Homepage extends Component {
           </Grid>
 
           <Grid item  xs={12} md={5}>
-            <Div2 className="center" color="#67e486">
+            <Div2 className="center" color="#67e486" onClick={this.handleClickOpen(Web3)}>
               <Grid alignItems="center" style={{margin:0,width:'auto'}} container spacing={24}>
                 <Grid item xs={5} >
-                  <Img  width="50%"  src={Carcinogen} />
+                  <Img  width={50} src={Carcinogen} />
                 </Grid>
                 <Grid item xs={7} >
                   <P1>Carcinogen Risk</P1>
@@ -218,10 +237,10 @@ class Homepage extends Component {
                 </Grid>  
               </Grid>  
             </Div2>
-            <Div2 className="center" color="#dfa74a">
+            <Div2 className="center" color="#dfa74a" onClick={this.handleClickOpen(Web4)}>
               <Grid alignItems="center" style={{margin:0,width:'auto'}} container spacing={24}>
                 <Grid item xs={5} >
-                  <Img width="50%" src={Noncarcinogen} />
+                  <Img width={50} src={Noncarcinogen} />
                 </Grid>
                 <Grid item xs={7} >
                   <P1>Non-Carcinogen Risk</P1>
@@ -229,15 +248,15 @@ class Homepage extends Component {
                 </Grid>  
               </Grid> 
             </Div2>
-            <Div2 className="center" color={this.state.BGHI}>
+            <Div2 className="center" color={this.state.BGHI} onClick={this.handleClickOpen(Web2)}>
               <Grid  alignItems="center" style={{margin:0,width:'auto'}} container spacing={24}>
                 <Grid item xs={12} md={5}>
-                  <Img width="50%" src={this.state.imageHI} />
+                  <Img width={50} src={this.state.imageHI} />
                 </Grid>
                 <Grid item xs={12} md={7}>
                   <P1 size="30px" weight>{this.state.titleHI}</P1>
                   <P1 top="10px" size="18px">{this.state.descriptionHI}</P1>
-                  <P1 size="35px" top="10px" weight>{this.state.HI+' F'}</P1>
+                  <P1 size="35px" top="10px" weight>{this.state.HI+' °F'}</P1>
                 </Grid> 
               </Grid> 
             </Div2>
@@ -247,16 +266,11 @@ class Homepage extends Component {
             <Div3 className="center" color="#4240fb">
               <Grid alignItems="center" style={{margin:0,width:'auto'}} container spacing={24}>
               <Grid item xs={12}>
-                  <P1>Moderate</P1>
+                  <P1>Recommendation</P1>
                 </Grid> 
                 <Grid item xs={12}>
-                  <Img width="35%" left="10px" src={Health2} />
-                  <Img width="35%" left="10px" src={Health2} />
-                  <Img width="35%" left="10px" src={Health2} />
-                  <Img width="35%" left="10px" src={Health2} />
-                  <Img width="35%" left="10px" src={Health2} />
-                  <Img width="35%" left="10px" src={Health2} />
-                </Grid>
+                  comingsoon...
+                </Grid> 
               </Grid>
             </Div3>
           </Grid>
@@ -288,10 +302,15 @@ class Homepage extends Component {
   height:37.5vh;
   margin-bottom:3vh;
   border-radius: 20px
+  transition: all 0.2s ease;
   .center&{
     justify-content:center;
     display:flex;
     align-items:center;
+  }
+  :hover{
+    cursor:pointer
+    filter: brightness(1.1);
   }
   @media screen and (max-width: 1280px) {
     height:auto;
@@ -303,10 +322,15 @@ class Homepage extends Component {
   height:24vh;
   margin-bottom:3vh;
   border-radius: 20px
+  transition: all 0.2s ease;
   .center&{
     justify-content:center;
     display:flex;
     align-items:center;
+  }
+  :hover{
+    cursor:pointer
+    filter: brightness(1.1);
   }
   @media screen and (max-width: 1280px) {
     height:auto;
@@ -317,10 +341,15 @@ class Homepage extends Component {
   background-color:${props => props.color };
   height:78vh;
   border-radius: 20px
+  transition: all 0.2s ease;
   .center&{
     justify-content:center;
     display:flex;
     align-items:center;
+  }
+  :hover{
+    cursor:pointer
+    filter: brightness(1.1);
   }
   @media screen and (max-width: 1280px) {
     height:auto;
@@ -330,11 +359,18 @@ class Homepage extends Component {
   const Logo = styled.img`
   height:7vh;
   margin: 3vh;
+  :hover{
+    filter: brightness(1.1);
+  }
   `;
 
   const Img = styled.img`
-  width:${props => props.width };
+  width:${props => props.width+'%'};
   margin-left:${props => props.left?props.left:'0px' };
+  transition: all 0.1s ease;
+  :hover{
+    width:${props => (props.width+props.width/10)+'%'}; 
+  }
   `;
 
   const P1 = styled.p`
