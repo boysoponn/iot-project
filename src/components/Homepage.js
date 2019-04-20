@@ -128,11 +128,11 @@ class Homepage extends Component {
 
   PMV=(nextProps)=>{
     let Pa = ((nextProps.data5/100)*0.1333)*(Math.exp(18.6686-4030.183/(nextProps.data4+235)));
-    let Va = 0.1
-    let Icl = 0.5;
+    let Va = 0.9
+    let Icl = 0.4;
     let Rcl = Icl*0.155;
-    let fcl = 1.1;
-    let M= 93.12;
+    let fcl = 1.08;
+    let M= 115;
     let Tclr = nextProps.data4;
     let Tcll = 0;
     let i=1;
