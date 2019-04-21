@@ -177,14 +177,16 @@ class Homepage extends Component {
   }
 
   Carci=(nextProps)=> {
-    let ADI = (((nextProps.data2*0.001*0.83*8*204*48)/1226400)*100).toFixed(3);
+    let ADI = ((nextProps.data2*65.01888)/1226400).toFixed(6);
     let RfD = 0.001429
+    let ADI2 = (ADI*110).toFixed(4)
     let HQ = ADI/RfD
     if(HQ>1) {
-      this.setState({Carci:ADI,descriptionCarci:"Must concern"});
+      this.setState({Carci:ADI2,descriptionCarci:"Must concern"});
     }else{
-      this.setState({Carci:ADI,descriptionCarci:"Must not concern"});
+      this.setState({Carci:ADI2,descriptionCarci:"Must not concern"});
     }
+    console.log(ADI)
     this.setState({
       loaded:true
     })
@@ -258,9 +260,10 @@ class Homepage extends Component {
                   <Img width={50} src={this.state.imageHI} />
                 </Grid>
                 <Grid item xs={12} md={7}>
-                  <P1 size="30px" weight>{this.state.titleHI}</P1>
-                  <P1 top="10px" size="18px">{this.state.descriptionHI}</P1>
-                  <P1 size="35px" top="10px" weight>{this.state.HI+' °F '+' ( '+(5/9*(this.state.HI-32)).toFixed(0)+' °C )'}</P1>
+                  <P1 size="25px" weight>{this.state.titleHI}</P1>
+                  <P1 top="5px" size="18px">{this.state.descriptionHI}</P1>
+                  <P1 size="35px" top="5px" weight>{this.state.HI+' °F '}</P1>
+                  <P1 size="15px" weight >{' ( Feels like '+(5/9*(this.state.HI-32)).toFixed(0)+' °C )'}</P1>
                 </Grid> 
               </Grid> 
             </Div2>
@@ -270,14 +273,14 @@ class Homepage extends Component {
           <Div2 className="center" color="#00a04f">
               <Grid alignItems="center" style={{margin:0,width:'auto'}} container spacing={24}>
                 <Grid item xs={6} >
-                  <P1>Temperature </P1>
-                  <P1 top="10px">Humidity</P1>
-                  <P1 top="10px">Pressure</P1>
+                  <P1 size="22">Temperature </P1>
+                  <P1 size="22"top="10px">Humidity</P1>
+                  <P1 size="22"top="10px">Pressure</P1>
                 </Grid>
                 <Grid item xs={6} >
-                  <P1>{this.props.data4}</P1>
-                  <P1 top="10px">{this.props.data5}</P1>
-                  <P1 top="10px">{this.props.data6}</P1>
+                  <P1 size="22">{this.props.data4+' °C'}</P1>
+                  <P1 size="22" top="10px">{this.props.data5+' %'}</P1>
+                  <P1 size="22" top="10px">{this.props.data6+' hPa'}</P1>
                 </Grid>
               </Grid> 
             </Div2>
