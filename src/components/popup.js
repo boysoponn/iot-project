@@ -2,7 +2,6 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
-import styled  from 'styled-components'
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;

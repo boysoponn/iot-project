@@ -25,13 +25,14 @@ import Cold from '../image/cold.png'
 import Cool from '../image/cool.png'
 import Break from '../image/break.png'
 import Exercise from '../image/exercise.png'
-import Exercise1 from '../image/exercise.png'
 import Limitexercise from '../image/limit exercise.png'
-import remind from '../image/remind.png'
+import Remind from '../image/remind.png'
 import PMV1 from '../image/PMV1.png'
 import PMV2 from '../image/PMV2.png'
 import Water from '../image/water.png'
 import Window from '../image/window.png'
+import Mask from '../image/mask.png'
+import Avoid from '../image/avoid.png'
 import CloseWindow from '../image/closewindow.png'
 import Reschedule from '../image/reschedule.png'
 import Sit from '../image/SIIT LOGO 2.png'
@@ -86,13 +87,13 @@ class Homepage extends Component {
       HI = (HI1-AD1+AD2).toFixed(0);
     }
       if(HI>=0&& HI<91){
-        this.setState({imageHI:Sun1,HI:HI,titleHI:"Caution",descriptionHI:"Fatigue possible",BGHI:"#d8ff3e",recom2:Water});
+        this.setState({imageHI:Sun1,HI:HI,titleHI:"Caution",descriptionHI:"Fatigue possible",BGHI:"#d8ff3e",Water:true,Exercise2:true});
       }else if(HI>=91 && HI<103){
-        this.setState({imageHI:Sun3,HI:HI,titleHI:"Extreme Caution",descriptionHI:"Sunstroke, muscle cramps, and/or heat exhaustion",BGHI:"#ffd700",recom2:remind,recom3:Break});
+        this.setState({imageHI:Sun3,HI:HI,titleHI:"Extreme Caution",descriptionHI:"Sunstroke, muscle cramps, and/or heat exhaustion",BGHI:"#ffd700",Remind:true,Break:true,});
       }else if(HI>=103&&HI<115){
-        this.setState({imageHI:Sun2,HI:HI,titleHI:"Danger",descriptionHI:"Sunstroke, muscle cramps, and/or heat exhaustion",BGHI:"#ffa800",recom2:remind,recom3:Limitexercise});
+        this.setState({imageHI:Sun2,HI:HI,titleHI:"Danger",descriptionHI:"Sunstroke, muscle cramps, and/or heat exhaustion",BGHI:"#ffa800",Remind:true,Break:true,Limitexercise1:true});
       }else if(HI>=115){
-        this.setState({imageHI:Sun4,HI:HI,titleHI:"Extreme Danger",descriptionHI:"Heat stroke or Sun stroke highly likely",BGHI:"#ff4500",recom2:remind,recom3:Reschedule });
+        this.setState({imageHI:Sun4,HI:HI,titleHI:"Extreme Danger",descriptionHI:"Heat stroke or Sun stroke highly likely",BGHI:"#ff4500",Remind:true,Break:true,Reschedule:true,Limitexercise1:true });
       }
       this.AQI(nextProps);  
   }
@@ -101,30 +102,31 @@ class Homepage extends Component {
     let I=0; 
     if(nextProps.data2>=0 && nextProps.data2<=12){
       I=((50/12)*nextProps.data2).toFixed(0);
-      this.setState({imageAQI:Good,AQI:I,descriptionAQI:"Good",BGAQI:"#00d500",recom4:Window,recom5:Exercise});
+      this.setState({imageAQI:Good,AQI:I,descriptionAQI:"Good",BGAQI:"#00d500",Window:true,Exercise1:true});
     }else if(nextProps.data2>=12.1 && nextProps.data2<=35.4){
       I=((49/23.3)*(nextProps.data2-12.1)+51).toFixed(0);
-      this.setState({imageAQI:Moderate,AQI:I,descriptionAQI:"Moderate",BGAQI:"#7cfc00",recom4:CloseWindow,recom5:Exercise1});
+      this.setState({imageAQI:Moderate,AQI:I,descriptionAQI:"Moderate",BGAQI:"#7cfc00",CloseWindow:true,Mask:TextTrackCueList,Limitexercise2:true});
     }else if(nextProps.data2>=35.5 && nextProps.data2<=55.4){
       I=((49/19.9)*(nextProps.data2-35.5)+101).toFixed(0);
-      this.setState({imageAQI:Sengroups,AQI:I,descriptionAQI:"Unhealthy for Sensitive Groups",BGAQI:"#ff8c00",recom4:CloseWindow,recom5:Exercise1});
+      this.setState({imageAQI:Sengroups,AQI:I,descriptionAQI:"Unhealthy for Sensitive Groups",BGAQI:"#ff8c00",CloseWindow:true,Mask:true,Limitexercise2:true});
     }else if(nextProps.data2>=55.5 && nextProps.data2<=150.4){
       I=((49/94.9)*(nextProps.data2-55.5)+151).toFixed(0);
-      this.setState({imageAQI:Unhealthy,AQI:I,descriptionAQI:"Unhealthy",BGAQI:"#ff0000",recom4:CloseWindow,recom5:Exercise1});
+      this.setState({imageAQI:Unhealthy,AQI:I,descriptionAQI:"Unhealthy",BGAQI:"#ff0000",CloseWindow:true,Mask:true,Avoid:true,});
     }else if(nextProps.data2>=150.5 && nextProps.data2<=250.4){
       I=((99/99.9)*(nextProps.data2-150.5)+201).toFixed(0);
-      this.setState({imageAQI:Veryunhealthy,AQI:I,descriptionAQI:"Very Unhealthy",BGAQI:"#800080",recom4:CloseWindow,recom5:Exercise1});
+      this.setState({imageAQI:Veryunhealthy,AQI:I,descriptionAQI:"Very Unhealthy",BGAQI:"#800080",CloseWindow:true,Mask:true,Avoid:true});
     }else if(nextProps.data2>=250.5 && nextProps.data2<=350.4){
       I=((99/99.9)*(nextProps.data2-250.5)+301).toFixed(0);
-      this.setState({imageAQI:Hazardous,AQI:I,descriptionAQI:"Hazardous",BGAQI:"#800000",recom4:CloseWindow,recom5:Exercise1});
+      this.setState({imageAQI:Hazardous,AQI:I,descriptionAQI:"Hazardous",BGAQI:"#800000",CloseWindow:true,Mask:true,Avoid:true});
     }else if(nextProps.data2>=350.5){
       I=((99/149.9)*(nextProps.data2-350.5)+401).toFixed(0);
-      this.setState({imageAQI:Hazardous,AQI:I,descriptionAQI:"Hazardous",BGAQI:"#800000",recom4:CloseWindow,recom5:Exercise1});
+      this.setState({imageAQI:Hazardous,AQI:I,descriptionAQI:"Hazardous",BGAQI:"#800000",CloseWindow:true,Mask:true,Avoid:true});
     }
   this.PMV(nextProps); 
    }
 
   PMV=(nextProps)=>{
+    if(nextProps.data4&&nextProps.data5){
     let Pa = ((nextProps.data5/100)*0.1333)*(Math.exp(18.6686-4030.183/(nextProps.data4+235)));
     let Va = 0.9
     let Icl = 0.4;
@@ -143,7 +145,8 @@ class Homepage extends Component {
       }      
 
       Tcll= 35.7-(0.028*M)-Rcl*(((39.6*Math.pow(10,-9))*fcl*((Math.pow((Tclr+273),4))- (Math.pow((nextProps.data4+273),4)) )+ (fcl*hc*(Tclr-nextProps.data4))));
-      if(Tclr.toFixed(3)==Tcll.toFixed(3)){
+      
+      if(Tclr.toFixed(3)===Tcll.toFixed(3)){
         break;
     }
       Tclr=Tcll;
@@ -158,21 +161,21 @@ class Homepage extends Component {
     let L= M-P1-P2-P3-P4-P5-P6;
     let P1MV = (0.303*Math.exp(-0.036*M)+0.028)*L;
     if(P1MV<= -3){
-      this.setState({imagePMV:Cold,descriptionPMV:"Cold",BGPMV:"#0000cd",recom1:PMV2});
+      this.setState({imagePMV:Cold,descriptionPMV:"Cold",BGPMV:"#0000cd",PMV2:true});
     }else if(P1MV<=-2 && P1MV>-3){
-      this.setState({imagePMV:Cool,descriptionPMV:"Cool",BGPMV:"#6495ed",recom1:PMV2});
+      this.setState({imagePMV:Cool,descriptionPMV:"Cool",BGPMV:"#6495ed",PMV2:true});
     }else if(P1MV<=-1 && P1MV>2){
-      this.setState({imagePMV:Slightlycool,descriptionPMV:"Slightly Cool",BGPMV:"#00ffff",recom1:PMV2});
+      this.setState({imagePMV:Slightlycool,descriptionPMV:"Slightly Cool",BGPMV:"#00ffff",PMV2:true});
     }else if(P1MV<1 && P1MV>-1){
-      this.setState({imagePMV:Neutral,descriptionPMV:"Neutral",BGPMV:"#e0e0f6",recom1:PMV1});
+      this.setState({imagePMV:Neutral,descriptionPMV:"Neutral",BGPMV:"#e0e0f6",PMV1:true});
     }else if(P1MV>=1 && P1MV<2){
-      this.setState({imagePMV:Slightlywarm,descriptionPMV:"Slightly Warm",BGPMV:"#fa8072",recom1:PMV1});
+      this.setState({imagePMV:Slightlywarm,descriptionPMV:"Slightly Warm",BGPMV:"#fa8072",PMV1:true});
     }else if(P1MV>=2 && P1MV<3){
-      this.setState({imagePMV:Warm,descriptionPMV:"Warm",BGPMV:"#a0522d",recom1:PMV1});
+      this.setState({imagePMV:Warm,descriptionPMV:"Warm",BGPMV:"#a0522d",PMV1:true});
     }else if(P1MV>=3){
-      this.setState({imagePMV:Hot,descriptionPMV:"Hot",BGPMV:"#ff0000",recom1:PMV1});
+      this.setState({imagePMV:Hot,descriptionPMV:"Hot",BGPMV:"#ff0000",PMV1:true});
     }
-
+  }
     this.Carci(nextProps); 
   }
 
@@ -186,7 +189,6 @@ class Homepage extends Component {
     }else{
       this.setState({Carci:ADI2,descriptionCarci:"Must not concern"});
     }
-    console.log(ADI)
     this.setState({
       loaded:true
     })
@@ -290,14 +292,18 @@ class Homepage extends Component {
                 <Grid item xs={12}>
                   <P1>Recommendation</P1>
                 </Grid>
-                <Hover image={this.state.recom1} text={this.state.recom1===PMV1?"Casual wear is recommended":"Winter clothing is recommended"}/> 
-                <Hover image={this.state.recom2} text={this.state.recom2===Water?"Provide drinking water":"Remind workers to drink water often"}/> 
-                {this.state.recom3?
-                <Hover image={this.state.recom3} 
-                text={this.state.recom3===Break?"Take a break":this.state.recom3===Limitexercise?"Limit physical exertion":"Reschedule non-essential activity"}/> 
-                :null}
-                <Hover image={this.state.recom4} text={this.state.recom4===Window?"Open window and get some fresh air":"Close window and get some fresh air"}/> 
-                <Hover image={this.state.recom5} text={this.state.recom5===Exercise?"Let’s do outdoor exercise":"Sensitive groups shouldn’t spend  long time outdoor exertion"}/> 
+                <Hover status={this.state.PMV1} width="40" image={PMV1} text="Casual wear is recommended"/> 
+                <Hover status={this.state.PMV2} image={PMV2} text="Winter clothing is recommended"/> 
+                <Hover status={this.state.Water} width="100" image={Water} text="Provide drinking water"/> 
+                <Hover status={this.state.Remind} image={Remind} text="Remind workers to drink water often"/> 
+                <Hover status={this.state.Break} image={Break} width="100" text="Should take a few break after working for a while"/> 
+                <Hover status={this.state.Limitexercise1||this.state.Limitexercise2?true:false} width="70" image={Limitexercise} text="Limit physical exertion"/> 
+                <Hover status={this.state.Reschedule} width="60" image={Reschedule} text="Reschedule non-essential activity"/> 
+                <Hover status={this.state.Window} image={Window} text="Open window and get some fresh air"/> 
+                <Hover status={this.state.Exercise1&&this.state.Exercise2?true:false} image={Exercise} text="Let’s do outdoor exercise"/> 
+                <Hover status={this.state.CloseWindow} image={CloseWindow} text="Close your window "/> 
+                <Hover status={this.state.Mask} image={Mask} text="Should wear a mask"/> 
+                <Hover status={this.state.Avoid} width="60" image={Avoid} text="Avoid every outdoor exercise"/>
               </Grid>
             </Div3>
           </Grid>

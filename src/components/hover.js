@@ -33,14 +33,15 @@ class MouseOverPopover extends React.Component {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
-    return (
+if(this.props.status){
+  return (
         <Grid item xs={6}
         aria-owns={open ? 'mouse-over-popover' : undefined}
           aria-haspopup="true"
           onMouseEnter={this.handlePopoverOpen}
           onMouseLeave={this.handlePopoverClose}
         >
-          <Img width={"50"} src={this.props.image} />
+          <Img width={this.props.width?this.props.width:"50"} src={this.props.image} />
         <Popover
           id="mouse-over-popover"
           className={classes.popover}
@@ -63,7 +64,11 @@ class MouseOverPopover extends React.Component {
           <Typography>{this.props.text}</Typography>
         </Popover>
         </Grid>
-    );
+    )
+    }else{
+      return null;
+    }
+    
   }
 }
 
